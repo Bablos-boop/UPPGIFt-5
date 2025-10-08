@@ -3,6 +3,7 @@ import os
 import locale
 import time
 from time import sleep
+from colors import bcolors  
 
 products = []           #lista
 
@@ -74,7 +75,8 @@ def menu():
             print("Produkten hittades inte.")
     elif choice == 2:
         try:
-            idx = int(input("Välj produkt (nummer) som du vill ta bort: ")) - 1
+            os.system('cls')
+            idx = int(input(f"""{bcolors.RED} Välj produkt (nummer) som du vill ta bort: {bcolors.DEFAULT}""")) - 1
             if idx < 0 or idx >= len(products):
                 print("Ogiltigt produktnummer.")
                 return
@@ -88,7 +90,8 @@ def menu():
         except(ValueError, IndexError):
             print("Ogiltigt produktnummer.")
     elif choice == 3:
-        print("Vilken produkt vill du lägga till?")
+        os.system('cls')
+        print(f"""{bcolors.YELLOW}Vilken produkt vill du lägga till?{bcolors.DEFAULT}""")
         name = input("Namn: ")
         desc = input("Beskrivning: ")   
         price = float(input("Pris: "))
@@ -102,8 +105,9 @@ def menu():
         })
         Save_data(products, 'db_products.csv')
         print("Sparar produkt...")
-        os.system('cls')
+        
     elif choice == 4:
+        os.system('cls')
         Save_data(products, 'db_products.csv')
         print("Sparar listan innan avslut...")
         sleep(2)

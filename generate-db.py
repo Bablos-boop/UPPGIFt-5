@@ -1,5 +1,5 @@
 import csv
-
+from colors import bcolors
 products = [
     {
         "id": 1,
