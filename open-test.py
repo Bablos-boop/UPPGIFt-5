@@ -47,7 +47,7 @@ def Save_data(products, filepath):
     
     sleep(0.1)
 
-    try:
+    try:  #Sparar data till csv fil
         with open(filepath, 'w', newline='') as file:
             fieldnames = ['id', 'name', 'desc', 'price', 'quantity']
             writer = csv.DictWriter(file, fieldnames=fieldnames)
@@ -58,7 +58,7 @@ def Save_data(products, filepath):
         print("Fel", error_code)
     return f"OK"
 
-def menu(): # Meny
+def menu(): # Meny funktion
     print(f"{bcolors.YELLOW}\nVad vill du göra?{bcolors.DEFAULT}")
     print("1. Visa produkt och dess beskrivningar")
     print("2. Ta bort produkt")
@@ -72,19 +72,20 @@ def menu(): # Meny
         idx = int(input("Välj produkt (nummer): ")) - 1
         product = view_product(products, idx)  
         if product:
-            print(f"Produkt: {product['name']} | {product['desc']} | {format_currency(product['price'])} | {product['quantity']} st i lager")
+            print(f"Produkt: {product['name']} | {product['desc']} | {format_currency(product['price'])} | {product['quantity']} st i lager") # Visar produktinfo och dess beskrivning
         else:
             print("Produkten hittades inte.")
     elif choice == 2: # Ta bort produkt
         try:
             os.system('cls')
-            idx = int(input(f"""{bcolors.RED} Välj produkt (nummer) som du vill ta bort: {bcolors.DEFAULT}""")) - 1
-            if idx < 0 or idx >= len(products):
+            idx = int(input(f"""{bcolors.RED} Välj produkt (nummer) som du vill ta bort: {bcolors.DEFAULT}""")) - 1 # Ange index som du vill ta bort    
+            
+            if idx < 0 or idx >= len(products): # Är index giltigt?
                 print("Ogiltigt produktnummer.")
                 return
             product = view_product(products, idx)  
             if product:
-                products.remove(product)
+                products.remove(product) # Använder inte pop för att undvika indexproblem
                 print("produkten är borttagen")
                 Save_data(products, 'db_products.csv')
             else:
@@ -115,13 +116,13 @@ def menu(): # Meny
         idx = int(input(f"{bcolors.YELLOW}Välj produkt (nummer) som du vill ändra:{bcolors.DEFAULT}")) - 1
         product = view_product(products, idx)  
         if product:
-            print(f"Nuvarande produktinfo: {product['name']} | {product['desc']} | {format_currency(product['price'])} | {product['quantity']} st i lager")
-            name = input("Nytt namn (lämna tomt för att behålla nuvarande): ")
+            print(f"Nuvarande produktinfo: {product['name']} | {product['desc']} | {format_currency(product['price'])} | {product['quantity']} st i lager") # Visar nuvarande info
+            name = input("Nytt namn (lämna tomt för att behålla nuvarande): ") # Ändrar info
             desc = input("Ny beskrivning (lämna tomt för att behålla nuvarande): ")   
             price_input = input("Nytt pris (lämna tomt för att behålla nuvarande): ")
             quantity_input = input("Nytt antal i lager (lämna tomt för att behålla nuvarande): ")
 
-            if name:
+            if name: # uppdaterar samt sparar info
                 product['name'] = name
             if desc:
                 product['desc'] = desc
@@ -139,7 +140,7 @@ def menu(): # Meny
         
     elif choice == 5: #Stänger av programmet
         os.system('cls')
-        Save_data(products, 'db_products.csv')
+        Save_data(products, 'db_products.csv') # Sparar data innan avslut
         print(f"{bcolors.YELLOW}Sparar listan innan avslut...{bcolors.DEFAULT}")
         sleep(2)
         print("Avslutar programmet...")

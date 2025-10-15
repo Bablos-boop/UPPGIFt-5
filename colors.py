@@ -1,6 +1,6 @@
 __author__  = "Pablo Andersson Melián"
 __version__ = "1.0.0"
-__email__   = "pablo.anderssonmelian@elev.ga.ntig.se"
+__email__   = "pablo.anderssonmelian@elev.ga.dbgy.se"
 
 
 class bcolors:
