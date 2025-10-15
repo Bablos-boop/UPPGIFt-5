@@ -71,7 +71,10 @@ def menu(): # Meny funktion
         idx = int(input("Välj produkt (nummer): ")) - 1
         product = view_product(products, idx)  
         if product:
-            print(f"Produkt: {product['name']} | {product['desc']} | {format_currency(product['price'])} | {product['quantity']} st i lager") # Visar produktinfo och dess beskrivning
+            print(f"Produkt: {product['name']} | {product['desc']} | {format_currency(product['price'])} | {product['quantity']} st i lager")
+            print("Tryck på något för att fortsätta...") # Visar produktinfo och dess beskrivning
+            input()
+            os.system('cls')
         else:
             print("Produkten hittades inte.")
     elif choice == 2: # Ta bort produkt
