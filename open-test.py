@@ -1,7 +1,6 @@
 import csv
 import os
 import locale
-import time
 from time import sleep
 from colors import bcolors  
 
@@ -85,7 +84,7 @@ def menu(): # Meny funktion
                 return
             product = view_product(products, idx)  
             if product:
-                products.remove(product) # Använder inte pop för att undvika indexproblem
+                products.remove(product) # Tar bort produkt med dess namn
                 print("produkten är borttagen")
                 Save_data(products, 'db_products.csv')
             else:
