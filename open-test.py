@@ -146,6 +146,8 @@ def menu(): # Meny funktion
         print(f"{bcolors.YELLOW}Sparar listan innan avslut...{bcolors.DEFAULT}")
         sleep(2)
         print("Avslutar programmet...")
+        sleep(0.5)
+        print("Ses senare")
         exit()
 
 locale.setlocale(locale.LC_ALL, 'sv_SE.UTF-8')  
@@ -155,6 +157,9 @@ load_data('db_products.csv') #Läser in data från filemnamnet
  
 os.system('cls')
 
+while True:
+    list_products(products)
+    menu() 
 
 #for  idx, product in enumerate(products):
  #   print(f"{product['id']}: {product['name']} - {format_currency(product['price'])} ({product['quantity']} st i lager)")
@@ -163,9 +168,7 @@ os.system('cls')
  #   print(f"{i:<4} {product['id']:<5}{product['name']:<20} {format_currency(product['price']):<10} ({product['quantity']} st i lager)")
 
 
-while True:
-    list_products(products)
-    menu()        
+       
     #list_products(products)
     #idx = int(input("Välj produkt (nummer): "))
     
